@@ -14,20 +14,20 @@ public class FileEncryptor {
 	public static  void main(String[] args) {
 		String dj = JOptionPane.showInputDialog("Write a message");
 		try {
-			FileWriter fw = new FileWriter("src/_00_Intro_To_File_Input_and_Output/newFile.txt");
+			FileWriter fw = new FileWriter("src/_02_File_Encrypt_Decrypt/newFile.txt");
 			
 			/*
 			NOTE: To append to a file that already exists, add true as a second parameter when calling the
 			      FileWriter constructor.
 			      (e.g. FileWriter fw = new FileWriter("src/_00_Intro_To_File_Input_and_Output/test2.txt", true);)
 			*/
-			
-			fw.write(dj);
-				
+		String message = encrypt(dj.getBytes(), (byte) 'c');
+			fw.write(message);
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	public static String encrypt(byte[] plaintext, byte key) {
 		for (int i = 0; i < plaintext.length; i++) {
@@ -35,4 +35,5 @@ public class FileEncryptor {
 		}
 		return Base64.getEncoder().encodeToString(plaintext);
 	}
+	
 }
